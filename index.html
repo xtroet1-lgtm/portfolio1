@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجرائم الإلكترونية في الكويت - عرض تقديمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0a192f;
+            --secondary: #1e3a5f;
+            --accent: #4a90e2;
+            --accent2: #00d4aa;
+            --text: #f8f9fa;
+            --text-secondary: #a0aec0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: fadeIn 0.8s ease;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 25, 47, 0.85);
+            z-index: 1;
+        }
+        
+        .slide > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        /* خلفيات مخصصة لكل شريحة */
+        #slide1 {
+            background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        #slide2 {
+            background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        #slide3 {
+            background-image: url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        #slide4 {
+            background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        #slide5 {
+            background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        #slide6 {
+            background-image: url('https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        #slide7 {
+            background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        #slide8 {
+            background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .slide-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .slide-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--accent2);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slide-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-box {
+            background: rgba(30, 45, 70, 0.7);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .content-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .content-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .example-box {
+            background: rgba(40, 15, 25, 0.7);
+            border-left-color: #e23636;
+        }
+        
+        .law-box {
+            background: rgba(40, 35, 15, 0.7);
+            border-left-color: #f9c74f;
+        }
+        
+        .tips-box {
+            background: rgba(15, 40, 30, 0.7);
+            border-left-color: var(--accent2);
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: rgba(30, 45, 70, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 200px;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent2);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: var(--text-secondary);
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--accent2);
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
+            background: rgba(30, 45, 70, 0.5);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .nav-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-btn:hover {
+            background: var(--accent2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-btn:disabled {
+            background: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .slide-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: var(--accent2);
+            transform: scale(1.2);
+        }
+        
+        .progress-bar {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--accent2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 25px 20px;
+                min-height: 500px;
+            }
+            
+            .slide-title {
+                font-size: 2.2rem;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- الشريحة 1: الغلاف -->
+        <div class="slide active" id="slide1">
+            <div class="slide-header">
+                <h1 class="slide-title">الجرائم الإلكترونية في الكويت</h1>
+                <p class="slide-subtitle">دراسة تحليلية شاملة للجرائم الإلكترونية: التعريف، الأنواع، الآثار، وسبل المكافحة</p>
+            </div>
+            
+            <div class="content-box">
+                <h2 class="content-title">مقدمة</h2>
+                <p class="content-text">في عصر تحولت فيه هوياتنا إلى بيانات، وثرواتنا إلى أرقام، أصبح الأمن السيبراني ليس رفاهية، بل ضرورة وجودية. الكويت، كدولة رقمية متقدمة، تواجه تحديات غير مسبوقة في حماية الفضاء الإلكتروني لمواطنيها.</p>
+            </div>
+            
+            <div class="content-box">
+                <h2 class="content-title">هدف العرض</h2>
+                <p class="content-text">يهدف هذا العرض إلى تسليط الضوء على أنواع الجرائم الإلكترونية في الكويت، وعقوباتها القانونية، وسبل الوقاية منها، للمساهمة في رفع الوعي المجتمعي بأهمية الأمن الرقمي.</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()" disabled>
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()">
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 12.5%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator active" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+                <div class="indicator" onclick="goToSlide(6)"></div>
+                <div class="indicator" onclick="goToSlide(7)"></div>
+                <div class="indicator" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 2: انتحال الشخصية -->
+        <div class="slide" id="slide2">
+            <div class="slide-header">
+                <h1 class="slide-title">انتحال الشخصية الإلكتروني</h1>
+                <p class="slide-subtitle">التعريف، الأمثلة، والعقوبات القانونية</p>
+            </div>
+            
+            <div class="content-box">
+                <h2 class="content-title">التعريف المتقدم</h2>
+                <p class="content-text">عملية منهجية لاختراق الهوية الرقمية للفرد واستغلالها في عمليات احتيال متسلسلة، تبدأ بجمع البيانات وتنتهي بالتدمير المالي والسمعة.</p>
+            </div>
+            
+            <div class="content-box example-box">
+                <h2 class="content-title">مثال واقعي</h2>
+                <p class="content-text">محامي كويتي تعرض لانتحال هويته عبر إنشاء حساب وهمي على LinkedIn، تم استخدامه لاستدراج عملاء وسرقة مستحقات مالية بلغت 50,000 دينار.</p>
+            </div>
+            
+            <div class="content-box law-box">
+                <h2 class="content-title">العقوبة في القانون الكويتي</h2>
+                <p class="content-text">السجن لا يزيد عن <strong>3 سنوات</strong> أو غرامة لا تتجاوز <strong>10,000 دينار كويتي</strong> أو كلا العقوبتين معًا.</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()">
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 25%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator active" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+                <div class="indicator" onclick="goToSlide(6)"></div>
+                <div class="indicator" onclick="goToSlide(7)"></div>
+                <div class="indicator" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 3: الابتزاز الإلكتروني -->
+        <div class="slide" id="slide3">
+            <div class="slide-header">
+                <h1 class="slide-title">الابتزاز الإلكتروني</h1>
+                <p class="slide-subtitle">التحليل النفسي والآليات القانونية للتعامل معه</p>
+            </div>
+            
+            <div class="content-box">
+                <h2 class="content-title">التحليل النفسي للجريمة</h2>
+                <p class="content-text">سلاح نفسي يستخدم الخوف والعار كرافعة للسيطرة على الضحية، وتحويل الخصوصية إلى سلعة قابلة للابتزاز.</p>
+            </div>
+            
+            <div class="content-box example-box">
+                <h2 class="content-title">مثال واقعي</h2>
+                <p class="content-text">شخص يتعرّف على فتاة عبر مواقع التواصل، يحصل على صورها الخاصة، ثم يهددها بنشرها علنًا إن لم ترسل له مبلغًا ماليًا.</p>
+            </div>
+            
+            <div class="content-box law-box">
+                <h2 class="content-title">العقوبة في القانون الكويتي</h2>
+                <p class="content-text">التهديد أو الابتزاز الإلكتروني يعاقب عليه بالحبس مدة لا تتجاوز <strong>3 سنوات</strong> والغرامة لا تقل عن <strong>3,000 دينار</strong> ولا تتجاوز <strong>10,000 دينار</strong>.</p>
+                <p class="content-text">إذا كان التهديد يمس كرامة الأشخاص أو يخدش الشرف أو السمعة، فالعقوبة قد تزداد إلى سجن لا يتجاوز <strong>5 سنوات</strong> وغرامة من <strong>5,000 إلى 20,000 دينار</strong>.</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()">
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 37.5%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator active" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+                <div class="indicator" onclick="goToSlide(6)"></div>
+                <div class="indicator" onclick="goToSlide(7)"></div>
+                <div class="indicator" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 4: التجسس الإلكتروني -->
+        <div class="slide" id="slide4">
+            <div class="slide-header">
+                <h1 class="slide-title">التجسس الإلكتروني</h1>
+                <p class="slide-subtitle">البعد الاستراتيجي وآليات الحماية</p>
+            </div>
+            
+            <div class="content-box">
+                <h2 class="content-title">البعد الاستراتيجي</h2>
+                <p class="content-text">تحول من نشاط فردي إلى عمليات منظمة تمولها دول، تستهدف البنى التحتية الحيوية في الكويت ومؤسساتها الهامة.</p>
+            </div>
+            
+            <div class="content-box example-box">
+                <h2 class="content-title">مثال واقعي</h2>
+                <p class="content-text">مجموعة مخترقين تنجح في اختراق بريد إلكتروني لشركة كويتية للحصول على بيانات عملائها، أو تتجسس على رسائل مسؤول حكومي.</p>
+            </div>
+            
+            <div class="content-box law-box">
+                <h2 class="content-title">العقوبة في القانون الكويتي</h2>
+                <p class="content-text">الدخول غير المشروع إلى أنظمة معلوماتية: الحبس لمدة لا تتجاوز <strong>6 أشهر</strong> أو غرامة تبدأ من <strong>500 دينار إلى 2,000 دينار</strong>، أو كليهما.</p>
+                <p class="content-text">إذا كانت البيانات حكومية وسرية أو المعلومات الخاصة حساسة، العقوبة يمكن أن تصل إلى <strong>10 سنوات حبس</strong> وغرامة من <strong>5,000 إلى 20,000 دينار</strong>.</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()">
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 50%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator active" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+                <div class="indicator" onclick="goToSlide(6)"></div>
+                <div class="indicator" onclick="goToSlide(7)"></div>
+                <div class="indicator" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 5: الحقوق الفكرية -->
+        <div class="slide" id="slide5">
+            <div class="slide-header">
+                <h1 class="slide-title">الحقوق الفكرية في العصر الرقمي</h1>
+                <p class="slide-subtitle">الرؤية المستقبلية وآليات الحماية</p>
+            </div>
+            
+            <div class="content-box">
+                <h2 class="content-title">الرؤية المستقبلية</h2>
+                <p class="content-text">الملكية الفكرية لم تعد مجرد كتب وبرامج، بل أصبحت بياناتك الشخصية هي أغلى ما تملك في الاقتصاد الرقمي الجديد.</p>
+            </div>
+            
+            <div class="content-box law-box">
+                <h2 class="content-title">الحماية في القانون الكويتي</h2>
+                <p class="content-text">سرقة الملكية الفكرية: الحبس لمدة لا تقل عن <strong>16 شهرًا</strong> وقد تصل إلى <strong>سنتين</strong> وغرامة قد تصل إلى <strong>50,000 دينار</strong>.</p>
+                <p class="content-text">قانون الكتب الإلكترونية يحمي صاحب الكتاب لمدة معينة، ونشره دون إذن يعاقب عليه القانون.</p>
+            </div>
+            
+            <div class="quote">
+                "لا يحل مال امرئ مسلم إلا عن طيبة من نفسه" - رسول الله صلى الله عليه وسلم
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()">
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 62.5%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator active" onclick="goToSlide(5)"></div>
+                <div class="indicator" onclick="goToSlide(6)"></div>
+                <div class="indicator" onclick="goToSlide(7)"></div>
+                <div class="indicator" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 6: الإحصائيات -->
+        <div class="slide" id="slide6">
+            <div class="slide-header">
+                <h1 class="slide-title">إحصائيات ومؤشرات</h1>
+                <p class="slide-subtitle">نظرة على حجم المشكلة في الكويت</p>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-value">73%</span>
+                    <span class="stat-label">زيادة في الجرائم الإلكترونية بالكويت خلال 3 سنوات</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-value">45%</span>
+                    <span class="stat-label">من الضحايا هم من فئة الشباب</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-value">64%</span>
+                    <span class="stat-label">من الجرائم تتم عبر وسائل التواصل الاجتماعي</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-value">28%</span>
+                    <span class="stat-label">انخفاض في البلاغات بسبب الخوف من الفضيحة</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-value">82%</span>
+                    <span class="stat-label">من الشركات الكويتية تعرضت لهجوم إلكتروني مرة واحدة على الأقل</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-value">57%</span>
+                    <span class="stat-label">زيادة في جرائم الابتزاز الإلكتروني خلال عام 2022</span>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()">
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 75%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+                <div class="indicator active" onclick="goToSlide(6)"></div>
+                <div class="indicator" onclick="goToSlide(7)"></div>
+                <div class="indicator" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 7: نصائح الوقاية -->
+        <div class="slide" id="slide7">
+            <div class="slide-header">
+                <h1 class="slide-title">نصائح للوقاية من الجرائم الإلكترونية</h1>
+                <p class="slide-subtitle">استراتيجيات أساسية للحماية الرقمية</p>
+            </div>
+            
+            <div class="content-box tips-box">
+                <h2 class="content-title">الاستراتيجيات الأساسية للحماية:</h2>
+                <ul class="content-text">
+                    <li>استخدام كلمات مرور قوية وتغييرها دوريًا</li>
+                    <li>تفعيل التحقق بخطوتين على الحسابات المهمة</li>
+                    <li>توخي الحذر الشديد عند تلقي رسائل أو روابط مشبوهة</li>
+                    <li>الاحتفاظ بنسخ احتياطية مستمرة للبيانات المهمة</li>
+                    <li>توعية أفراد الأسرة بمخاطر الجرائم الإلكترونية</li>
+                    <li>عدم مشاركة المعلومات الشخصية مع غير الموثوقين</li>
+                    <li>تحديث البرامج والتطبيقات باستمرار</li>
+                    <li>استخدام برامج مكافحة الفيروسات والحماية</li>
+                </ul>
+            </div>
+            
+            <div class="quote">
+                "الوقاية خير من العلاج - خاصة في العالم الرقمي"
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()">
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 87.5%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+                <div class="indicator" onclick="goToSlide(6)"></div>
+                <div class="indicator active" onclick="goToSlide(7)"></div>
+                <div class="indicator" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 8: الخاتمة -->
+        <div class="slide" id="slide8">
+            <div class="slide-header">
+                <h1 class="slide-title">الخاتمة والرسالة الأخيرة</h1>
+                <p class="slide-subtitle">رؤية مستقبلية لمجتمع رقمي آمن</p>
+            </div>
+            
+            <div class="content-box">
+                <p class="content-text">الجرائم الإلكترونية ليست مشكلة تقنية فحسب، بل هي معركة وجود بين الخير والشر في الفضاء الرقمي. الكويت تحتاج إلى جيل جديد من المحاربين الرقميين - محامين، مبرمجين، مفكرين استراتيجيين - لمواجهة هذا التحدي.</p>
+            </div>
+            
+            <div class="quote">
+                "السؤال ليس: هل ستتعرض لهجوم إلكتروني؟ السؤال هو: متى؟ وهل ستكون مستعداً؟"
+            </div>
+            
+            <div class="content-box">
+                <p class="content-text">مسؤوليتنا كأفراد ومجتمع الالتزام بالأخلاقيات الرقمية والإبلاغ عن أي نشاط إجرامي، للمساهمة في بناء فضاء إلكتروني آمن للجميع.</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fas fa-arrow-right"></i> السابقة
+                </button>
+                <button class="nav-btn" onclick="nextSlide()" disabled>
+                    التالية <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 100%;"></div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+                <div class="indicator" onclick="goToSlide(6)"></div>
+                <div class="indicator" onclick="goToSlide(7)"></div>
+                <div class="indicator active" onclick="goToSlide(8)"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+        
+        function showSlide(n) {
+            // إخفاء جميع الشرائح
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // إظهار الشريحة المطلوبة
+            document.getElementById(`slide${n}`).classList.add('active');
+            
+            // تحديث المؤشرات
+            document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                if (index === n - 1) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+            
+            // تحديث أزرار التنقل
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.innerHTML.includes('السابقة')) {
+                    btn.disabled = n === 1;
+                } else {
+                    btn.disabled = n === totalSlides;
+                }
+            });
+            
+            // تحديث شريط التقدم
+            const progressPercentage = ((n - 1) / (totalSlides - 1)) * 100;
+            document.querySelector('.progress').style.width = `${progressPercentage}%`;
+            
+            currentSlide = n;
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        function goToSlide(n) {
+            showSlide(n);
+        }
+        
+        // إضافة إمكانية التنقل باستخدام لوحة المفاتيح
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+                prevSlide();
+            } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+                nextSlide();
+            }
+        });
+        
+        // تهيئة العرض
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(1);
+        });
+    </script>
+</body>
+</html>
